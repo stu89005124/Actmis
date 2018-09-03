@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ActmisDBEntities-Web.config Connection String" description="ActmisDBEntities 應用程式在 web.config 中用來存取資料庫的連接字串。" defaultValue="metadata=res://*/Models.ActmisDBModel.csdl|res://*/Models.ActmisDBModel.ssdl|res://*/Models.ActmisDBModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=.\SQL2017;initial catalog=ActmisDB;user id=sa;password=johnson0416;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Dohwa\\Desktop\\Actmis\\Actmis\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ActmisDBEntities']/@connectionString" />
+  </parameter>
+</parameters>

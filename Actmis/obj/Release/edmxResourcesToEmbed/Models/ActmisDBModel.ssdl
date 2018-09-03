@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ActmisDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tEvents">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fUserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="fPId" Type="nvarchar" MaxLength="50" />
+    <Property Name="fName" Type="nvarchar" MaxLength="50" />
+    <Property Name="fPrice" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="fImg" Type="nvarchar" MaxLength="50" />
+    <Property Name="fDescription" Type="nvarchar(max)" />
+    <Property Name="fDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="fType_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="fArea" Type="nvarchar" MaxLength="50" />
+    <Property Name="fType_ca1" Type="nvarchar" MaxLength="50" />
+    <Property Name="fType_ca2" Type="nvarchar" MaxLength="50" />
+    <Property Name="fType_ca3 " Type="nvarchar" MaxLength="50" />
+    <Property Name="fPosition" Type="nvarchar" MaxLength="50" />
+    <Property Name="fHost" Type="nvarchar" MaxLength="50" />
+    <Property Name="fPeople" Type="nvarchar" MaxLength="50" />
+    <Property Name="fDes_detail" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tEvents_Type">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fType_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="fType_name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tMember">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fUserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="fPwd" Type="nvarchar" MaxLength="50" />
+    <Property Name="fName" Type="nvarchar" MaxLength="50" />
+    <Property Name="fAddress" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tOrder">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fOrderGuid" Type="nvarchar" MaxLength="50" />
+    <Property Name="fUserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="fReceiver" Type="nvarchar" MaxLength="50" />
+    <Property Name="fEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="fAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="fDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tOrderDetail">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fOrderGuid" Type="nvarchar" MaxLength="50" />
+    <Property Name="fUserId" Type="nvarchar" MaxLength="50" />
+    <Property Name="fPId" Type="nvarchar" MaxLength="50" />
+    <Property Name="fName" Type="nvarchar" MaxLength="50" />
+    <Property Name="fPrice" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="fQty" Type="int" />
+    <Property Name="fIsApproved" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityContainer Name="ActmisDBModelStoreContainer">
+    <EntitySet Name="tEvents" EntityType="Self.tEvents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tEvents_Type" EntityType="Self.tEvents_Type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMember" EntityType="Self.tMember" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tOrder" EntityType="Self.tOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tOrderDetail" EntityType="Self.tOrderDetail" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

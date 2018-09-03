@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles
+{
+    <style>
+        .modal-dialog {
+           height: 708px;
+        }
+        .main-section {
+            margin: auto;
+            margin-top: 130px;
+            padding: 0px;
+        }
+
+            .main-section i {
+                /*position: absolute;*/
+                /*left: 5px;*/
+                line-height: 38px;
+                float: left;
+                /* top: 11px; */
+            }
+
+        .modal-content {
+            margin-bottom: 100px;
+            box-shadow: 0 5px 15px rgba(143, 142, 142, 0.6);
+        }
+
+        .btn {
+            background-color: #3acbc8;
+            border: 0;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+            .btn i {
+                line-height: 30px;
+            }
+
+        .form-group {
+            margin-top: 20px;
+            padding-top: 15px;
+            padding-bottom: 20px;
+            padding-left: 10px;
+            color: #636363;
+        }
+
+        input {
+            margin-left: 15px;
+            float: left;
+        }
+
+        img {
+            height: 100px;
+            width: 100px;
+            margin-top: -50px;
+        }
+
+        h3 {
+            margin-top: 30px;
+            color: #636363;
+        }
+
+
+        .register {
+            line-height: 50px;
+            background-color: #ecf0f1;
+            border-radius: 0px 0px 4px 4px;
+        }
+
+            .register a {
+                text-decoration: none;
+                color: #999;
+                
+            }
+    </style>
+}
+
+
+@section scripts
+{
+
+}
+
+<div class="modal-dialog text-center">
+    <div class="col-sm-8 main-section">
+        <div class="modal-content">
+            <form action="@Url.Action("Login")" class="col-12" method="post">
+
+                <div class="col-12 user-img">
+                    <img src="~/images/generic-user-purple.png">
+                </div>
+                <h3>會員登入</h3>
+                <div class="form-group ">
+                    <i class="fas fa-user fa-lg"></i>
+                    <input type="email" class="form-control col-10" id="fUserId" name="fUserId" placeholder="請輸入帳號">
+                </div>
+
+                <div class="form-group">
+                    <i class="fas fa-lock fa-lg"></i>
+                    <input type="password" maxlength="12" class="form-control col-10" id="fPwd" name="fPwd" placeholder="請輸入密碼">
+                </div>
+
+                <button type="submit" class="btn btn-primary col-5"><i class="fas fa-sign-in-alt"></i>登入</button>
+            </form>
+            <span style="color:red">@ViewBag.Msg</span>
+            <div class="col-12 register">
+                <a href="#">還沒註冊嗎?</a>
+            </div>
+        </div>
+    </div>
+</div>
+

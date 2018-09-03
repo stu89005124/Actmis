@@ -1,0 +1,220 @@
+﻿@model IEnumerable<Actmis.Models.tEvents>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@section styles{
+
+    <style>
+        .col-md-4 {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .carousel-control-prev {
+            /* border: 0px; */
+            background: rgba(0, 0, 0, 0.25);
+            /* color: white; */
+            /* outline: 0px; */
+            /* opacity: 1; */
+            /* cursor: pointer; */
+            /* display: inline-block; */
+            width: 40px;
+            height: 40px;
+            margin: auto;
+            margin-left: 10px;
+            border-radius: 20px;
+        }
+
+        .carousel-control-next {
+            background: rgba(0, 0, 0, 0.25);
+            /* color: white; */
+            /* outline: 0px; */
+            /* opacity: 1; */
+            /* cursor: pointer; */
+            /* display: inline-block; */
+            width: 40px;
+            height: 40px;
+            margin: auto;
+            margin-right: 10px;
+            border-radius: 20px;
+        }
+
+        .card-title {
+            /*height: 50px;*/
+            font-size: 18px;
+            /*display: block;*/ /*如果不是區塊元素的話，要加這一行*/
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2; /*N 填入要顯示的行數*/
+            line-height: 25px; /*填入行高 px 值*/
+            height: 50px; /*限定高度為 X * N 的 px 值*/
+        }
+
+        .card-text {
+            /*height: 80px;*/
+            font-size: 15px;
+            /*display: block;*/ /*如果不是區塊元素的話，要加這一行*/
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3; /*N 填入要顯示的行數*/
+            line-height: 20px; /*填入行高 px 值*/
+            height: 60px; /*限定高度為 X * N 的 px 值*/
+        }
+
+        .container-part {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+
+        .card {
+            position: relative;
+            float: left;
+            width: 320px;
+            height: 380px;
+            margin: 12px;
+            padding: 0px;
+            border: 1px solid #EEE;
+            border-radius: 5px;
+            /*background: #888;*/
+            /*color: #262524;*/
+        }
+
+            .card > * {
+                margin: 0;
+                padding: 0;
+            }
+
+            .card .card-body {
+                margin: 20px;
+            }
+    </style>
+}
+
+
+@section scripts{
+
+}
+
+
+<br>
+<!--Carousel--https://getbootstrap.com/docs/4.1/components/carousel/-->
+<!--With controls-->
+<div id="slider" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="d-block w-100" src="~/images/c4ceb.jpg" alt="First slide">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="~/images/8a817.jpg" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="~/images/1ca22.jpg" alt="Third slide">
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#slider" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#slider" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+
+
+<!--Components >> Card-->
+<!--https://getbootstrap.com/docs/4.1/components/card/-->
+<div class="container-part">
+    <h5>精選活動</h5>
+    <div class="card-deck">
+        @foreach (var item in Model.Where( s => s.fType_no == "A"))
+        {
+            <div class="col-md-4">
+                <div class="card">
+                    <a href="@Url.Action("Details", "Events", new { id = item.fId })"><img src="~/images/@item.fImg" width="32" alt="Card image cap" class="card-img-top" /></a>
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            <a href="@Url.Action("Details", "Events", new { id = item.fId })">@Html.DisplayFor(modelItem => item.fName)</a>
+                        </h3>
+                        <p class="card-text">
+                            @Html.DisplayFor(modelItem => item.fDescription)
+                        </p>
+                        @if (Session["Member"] == null)
+                        {
+                            <p></p>
+                        }
+                        else
+                        {
+                            <p><a href="@Url.Action("AddCar", "Cart")?fPId=@item.fPId" class="btn btn-light">加入收藏</a></p>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <h5>藝文活動</h5>
+    <div class="card-deck">
+        @foreach (var item in Model.Where(s => s.fType_no == "B"))
+        {
+            <div class="col-md-4">
+                <div class="card">
+                    <a href="@Url.Action("Details", "Events", new { id = item.fId })"><img src="~/images/@item.fImg" width="32" alt="Card image cap" class="card-img-top" /></a>
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            <a href="@Url.Action("Details", "Events", new { id = item.fId })">@Html.DisplayFor(modelItem => item.fName)</a>
+                        </h3>
+                        <p class="card-text">
+                            @Html.DisplayFor(modelItem => item.fDescription)
+                        </p>
+                        @if (Session["Member"] == null)
+                        {
+                            <p></p>
+                        }
+                        else
+                        {
+                            <p><a href="@Url.Action("AddCar", "Cart")?fPId=@item.fPId" class="btn btn-light">加入收藏</a></p>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <h5>美食活動</h5>
+    <div class="card-deck">
+        @foreach (var item in Model.Where(s => s.fType_no == "C"))
+        {
+            <div class="col-md-4">
+                <div class="card">
+                    <a href="@Url.Action("Details", "Events", new { id = item.fId })"><img src="~/images/@item.fImg" width="32" alt="Card image cap" class="card-img-top" /></a>
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            <a href="@Url.Action("Details", "Events", new { id = item.fId })">@Html.DisplayFor(modelItem => item.fName)</a>
+                        </h3>
+                        <p class="card-text">
+                            @Html.DisplayFor(modelItem => item.fDescription)
+                        </p>
+                        @if (Session["Member"] == null)
+                        {
+                            <p></p>
+                        }
+                        else
+                        {
+                            <p><a href="@Url.Action("AddCar", "Cart")?fPId=@item.fPId" class="btn btn-light">加入收藏</a></p>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+
+

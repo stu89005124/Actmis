@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Actmis.Models.tOrder>
+
+@{
+    ViewBag.Title = "會員訂單列表";
+}
+
+<style>
+    .container {
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+</style>
+
+<div class="container">
+
+    <h2>會員訂單列表</h2>
+
+    <table class="table">
+        <tr>
+            <th>訂單編號</th>
+            <th>會員帳號</th>
+            <th>收件人</th>
+            <th>信箱</th>
+            <th>地址</th>
+            <th>訂單日期</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fOrderGuid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fUserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fReceiver)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fDate)
+                </td>
+                <td>
+                    <a href="@Url.Action("OrderDetail")?fOrderGuid=@item.fOrderGuid" class="btn btn-info">訂單明細</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

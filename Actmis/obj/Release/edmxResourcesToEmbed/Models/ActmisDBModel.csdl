@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ActmisDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ActmisDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tEvents_Type" EntityType="ActmisDBModel.tEvents_Type" />
+    <EntitySet Name="tMember" EntityType="ActmisDBModel.tMember" />
+    <EntitySet Name="tOrder" EntityType="ActmisDBModel.tOrder" />
+    <EntitySet Name="tOrderDetail" EntityType="ActmisDBModel.tOrderDetail" />
+    <EntitySet Name="tEvents" EntityType="ActmisDBModel.tEvents" />
+  </EntityContainer>
+  <EntityType Name="tEvents_Type">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fType_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fType_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tMember">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tOrder">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fOrderGuid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fReceiver" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tOrderDetail">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fOrderGuid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fPId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="fQty" Type="Int32" />
+    <Property Name="fIsApproved" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tEvents">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fPId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="fImg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fType_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fArea" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fType_ca1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fType_ca2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fType_ca3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fHost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fPeople" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fDes_detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

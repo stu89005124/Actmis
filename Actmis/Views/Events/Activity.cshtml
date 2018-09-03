@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Actmis.Models.tEvents>
+
+@{
+    ViewBag.Title = "Activity";
+    Layout = "~/Views/Shared/_LayoutMember.cshtml";
+}
+
+
+<style>
+    .container-part {
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+
+</style>
+
+<div class="container-part">
+
+    <h2>主辦活動</h2>
+    <p>
+        @Html.ActionLink("建立新活動", "Create")
+    </p>
+    <table class="table">
+
+        <tr>
+            <th>名稱</th>
+            <th>圖片</th>
+            <th>日期</th>
+            <th>說明</th>
+            <th>操作</th>
+        </tr>
+
+        @*<tr>
+                <th>@Html.DisplayNameFor(model => model.fPId)</th>
+                <th>@Html.DisplayNameFor(model => model.fName)</th>
+                <th>@Html.DisplayNameFor(model => model.fPrice)</th>
+                <th>@Html.DisplayNameFor(model => model.fImg)</th>
+                <th>@Html.DisplayNameFor(model => model.fDescription)</th>
+                <th>@Html.DisplayNameFor(model => model.fDate)</th>
+                <th>@Html.DisplayNameFor(model => model.fType_no)</th>
+                <th>@Html.DisplayNameFor(model => model.fArea)</th>
+                <th></th>
+            </tr>*@
+
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fName)
+                </td>
+
+                <td>
+                    @if (@item.fImg == "")
+                    {
+                        @:無圖示
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Details", "Events", new { id = item.fId })"><img src="~/images/@item.fImg" width="130" /></a>
+                    }
+
+
+                </td>
+
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.fImg)
+                    </td>*@
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.fDate)
+                </td>
+
+                <td style="width: 400px">
+                    @Html.DisplayFor(modelItem => item.fDescription)
+                </td>
+                <td>
+                    @Html.ActionLink("修改", "Edit", new { id = item.fId }) 
+                    @*@Html.ActionLink("詳細", "Details", new { id = item.fId }) |*@
+                    @Html.ActionLink("刪除", "Delete", new { id = item.fId }, new { onclick = "return confirm('確定要刪除嗎？')" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

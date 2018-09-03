@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ActmisDBModelStoreContainer" CdmEntityContainer="ActmisDBEntities">
+    <EntitySetMapping Name="tEvents_Type">
+      <EntityTypeMapping TypeName="ActmisDBModel.tEvents_Type">
+        <MappingFragment StoreEntitySet="tEvents_Type">
+          <ScalarProperty Name="fType_name" ColumnName="fType_name" />
+          <ScalarProperty Name="fType_no" ColumnName="fType_no" />
+          <ScalarProperty Name="fId" ColumnName="fId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMember">
+      <EntityTypeMapping TypeName="ActmisDBModel.tMember">
+        <MappingFragment StoreEntitySet="tMember">
+          <ScalarProperty Name="fAddress" ColumnName="fAddress" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fPwd" ColumnName="fPwd" />
+          <ScalarProperty Name="fUserId" ColumnName="fUserId" />
+          <ScalarProperty Name="fId" ColumnName="fId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tOrder">
+      <EntityTypeMapping TypeName="ActmisDBModel.tOrder">
+        <MappingFragment StoreEntitySet="tOrder">
+          <ScalarProperty Name="fDate" ColumnName="fDate" />
+          <ScalarProperty Name="fAddress" ColumnName="fAddress" />
+          <ScalarProperty Name="fEmail" ColumnName="fEmail" />
+          <ScalarProperty Name="fReceiver" ColumnName="fReceiver" />
+          <ScalarProperty Name="fUserId" ColumnName="fUserId" />
+          <ScalarProperty Name="fOrderGuid" ColumnName="fOrderGuid" />
+          <ScalarProperty Name="fId" ColumnName="fId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tOrderDetail">
+      <EntityTypeMapping TypeName="ActmisDBModel.tOrderDetail">
+        <MappingFragment StoreEntitySet="tOrderDetail">
+          <ScalarProperty Name="fIsApproved" ColumnName="fIsApproved" />
+          <ScalarProperty Name="fQty" ColumnName="fQty" />
+          <ScalarProperty Name="fPrice" ColumnName="fPrice" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fPId" ColumnName="fPId" />
+          <ScalarProperty Name="fUserId" ColumnName="fUserId" />
+          <ScalarProperty Name="fOrderGuid" ColumnName="fOrderGuid" />
+          <ScalarProperty Name="fId" ColumnName="fId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tEvents">
+      <EntityTypeMapping TypeName="ActmisDBModel.tEvents">
+        <MappingFragment StoreEntitySet="tEvents">
+          <ScalarProperty Name="fDes_detail" ColumnName="fDes_detail" />
+          <ScalarProperty Name="fPeople" ColumnName="fPeople" />
+          <ScalarProperty Name="fHost" ColumnName="fHost" />
+          <ScalarProperty Name="fPosition" ColumnName="fPosition" />
+          <ScalarProperty Name="fType_ca3" ColumnName="fType_ca3 " />
+          <ScalarProperty Name="fType_ca2" ColumnName="fType_ca2" />
+          <ScalarProperty Name="fType_ca1" ColumnName="fType_ca1" />
+          <ScalarProperty Name="fArea" ColumnName="fArea" />
+          <ScalarProperty Name="fType_no" ColumnName="fType_no" />
+          <ScalarProperty Name="fDate" ColumnName="fDate" />
+          <ScalarProperty Name="fDescription" ColumnName="fDescription" />
+          <ScalarProperty Name="fImg" ColumnName="fImg" />
+          <ScalarProperty Name="fPrice" ColumnName="fPrice" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fPId" ColumnName="fPId" />
+          <ScalarProperty Name="fUserId" ColumnName="fUserId" />
+          <ScalarProperty Name="fId" ColumnName="fId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

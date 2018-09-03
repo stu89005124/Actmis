@@ -1,0 +1,314 @@
+﻿@model Actmis.Models.tEvents
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutMember.cshtml";
+}
+
+@section styles{
+    <style>
+        .container-part {
+            margin-top: 100px;
+            margin-bottom: 100px;
+        }
+    </style>
+}
+
+@section scripts{
+    
+}
+
+
+<div class="container-part">
+
+    <h2>活動修改</h2>
+
+    <form action="@Url.Action("Edit")" method="post" enctype="multipart/form-data">
+
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>tEvents</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.fId)
+
+            <div class="form-group">
+                <label class="control-label col-md-2">活動編號</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fPId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fPId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">活動名稱</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">活動價位</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fPrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">活動圖片</label>
+                <div class="col-md-10">
+                    <input type="file" name="fImg" id="fImg" class="form-control" />
+                    <input type="hidden" name="oldimg" id="oldimg" value="@Model.fImg" />
+                    @if (Model.fImg == "")
+                    {
+                        @:無圖示
+                    }
+                    else
+                    {
+                        <img src="~/Images/@Model.fImg" width="200" />
+                    }
+                </div>
+            </div>
+
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.fImg, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.fImg, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fImg, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            <div class="form-group">
+                <label class="control-label col-md-2">活動簡介</label>
+                <div class="col-md-10">
+                    @*<textarea class="form-control" id="fDescription" name="fDescription" style="width: 100%;" rows="5"></textarea>*@
+                    @Html.TextAreaFor(model => model.fDescription, 10, 100, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fDescription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="control-label col-md-2">活動日期</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div>
+                <span class='ss01'>@Model.fType_no</span>
+                <span class='tt01'></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">活動類別</label>
+                <div class="col-md-10">
+                    <select id="fType_no" name="fType_no" class="form-control">
+                        <option value="A">精選</option>
+                        <option value="B">藝文</option>
+                        <option value="C">美食</option>
+                        <option value="D">運動</option>
+                        <option value="E">旅遊</option>
+                        <option value="F">科技</option>
+                        <option value="G">娛樂</option>
+                        <option value="H">學習</option>
+                        <option value="I">商業</option>
+                        <option value="J">健康</option>
+                        <option value="K">其它</option>
+                    </select>
+                </div>
+            </div>
+
+
+
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.fType_no, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.fType_no, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fType_no, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+
+
+            <div>
+                <span class='ss02'>@Model.fArea</span>
+                <span class='tt02'></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">活動地區</label>
+                <div class="col-md-10">
+                    <select id="fArea" name="fArea" class="form-control">
+                        <option value="基隆">基隆</option>
+                        <option value="台北">台北</option>
+                        <option value="新北">新北</option>
+                        <option value="桃園">桃園</option>
+                        <option value="新竹">新竹</option>
+                        <option value="苗栗">苗栗</option>
+                        <option value="台中">台中</option>
+                        <option value="南投">南投</option>
+                        <option value="彰化">彰化</option>
+                        <option value="雲林">雲林</option>
+                        <option value="嘉義">嘉義</option>
+                        <option value="高雄">高雄</option>
+                        <option value="屏東">屏東</option>
+                        <option value="宜蘭">宜蘭</option>
+                        <option value="花蓮">花蓮</option>
+                        <option value="台東">台東</option>
+                    </select>
+                </div>
+            </div>
+
+
+
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.fArea, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.fArea, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fArea, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+
+            <div>
+                <span class='ss03'>@Model.fType_ca1</span>
+                <span class='tt03'></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">票價</label>
+                <div class="col-md-10">
+                    <select id="fType_ca1" name="fType_ca1" class="form-control">
+                        <option value="免費">免費</option>
+                        <option value="付費">付費</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div>
+                <span class='ss04'>@Model.fType_ca2</span>
+                <span class='tt04'></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">性質</label>
+                <div class="col-md-10">
+                    <select id="fType_ca2" name="fType_ca2" class="form-control">
+                        <option value="課程">課程</option>
+                        <option value="講座">講座</option>
+                        <option value="活動">活動</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div>
+                <span class='ss05'>@Model.fType_ca3</span>
+                <span class='tt05'></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">屬性</label>
+                <div class="col-md-10">
+                    <select id="fType_ca3" name="fType_ca3" class="form-control">
+                        <option value="線上">線上</option>
+                        <option value="線下">線下</option>
+                        <option value="線上+線下">線上+線下</option>
+                    </select>
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <label class="control-label col-md-2">地點</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fPosition, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fPosition, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">主辦單位</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fHost, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fHost, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">活動嘉賓</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fPeople, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fPeople, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">活動詳細</label>
+                <div class="col-md-10">
+                    @*<textarea class="form-control" id="fDes_detail" name="fDes_detail" style="width: 100%;" rows="10"></textarea>*@
+                    @Html.TextAreaFor(model => model.fDes_detail, 10, 100, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fDes_detail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="儲存" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div>
+        @Html.ActionLink("返回活動清單", "Activity")
+    </div>
+</div>
+
+
+
+<script>
+    num();
+    function num() {
+        $(".tt01").each(function () {
+            var num = $(this).parent().find(".ss01").text();
+            $(this).parent().parent().find('#fType_no option[value=' + num + ']').attr('selected', 'selected');
+            $(this).parent().parent().find(".ss01").remove();
+        });
+
+        $(".tt02").each(function () {
+            var num = $(this).parent().find(".ss02").text();
+            $(this).parent().parent().find('#fArea option[value=' + num + ']').attr('selected', 'selected');
+            $(this).parent().parent().find(".ss02").remove();
+        });
+
+        $(".tt03").each(function () {
+            var num = $(this).parent().find(".ss03").text();
+            $(this).parent().parent().find('#fType_ca1 option[value=' + num + ']').attr('selected', 'selected');
+            $(this).parent().parent().find(".ss03").remove();
+        });
+
+        $(".tt04").each(function () {
+            var num = $(this).parent().find(".ss04").text();
+            $(this).parent().parent().find('#fType_ca2 option[value=' + num + ']').attr('selected', 'selected');
+            $(this).parent().parent().find(".ss04").remove();
+        });
+
+        $(".tt05").each(function () {
+            var num = $(this).parent().find(".ss05").text();
+            $(this).parent().parent().find('#fType_ca3 option[value=' + num + ']').attr('selected', 'selected');
+            $(this).parent().parent().find(".ss05").remove();
+        });
+    }
+</script>
+
+

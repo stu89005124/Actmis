@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 購物車車車</title>
+
+    <!--https://getbootstrap.com/-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    @*<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>*@
+
+    <style>
+        .fixed-width {
+            width: 1100px;
+            margin: auto;
+        }
+
+        .col-10 {
+            float: left;
+        }
+
+        .bg-dark {
+            background-color: #3acbc8 !important;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: #ffffff;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, "Helvetica Neue", 'Microsoft JhengHei', Arial,sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+
+        footer {
+
+            background-color: #333;
+            color: rgb(254, 255, 255);
+        }
+
+        footer a {
+            color: rgb(254, 255, 255);
+        }
+    </style>
+
+    @RenderSection("styles", false)
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+    @RenderSection("scripts", false)
+
+</head>
+
+<body>
+    <!--Navbar--https://getbootstrap.com/docs/4.1/components/navbar/-->
+
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+
+        <div class="fixed-width clearfix">
+
+            <!-- data-toggle="collapse" 主選單收納後下拉的效果  data-target="#navi" 必須設定主選單id -->
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navi">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- 主選單項目 -->
+            <div class="collapse navbar-collapse" id="navi">
+
+                <!-- navbar-expand-lg 電腦版選單展開 -->
+                <a href="@Url.Action("Index","Home")" class="navbar-brand">ExperinGO</a>
+
+                <ul class="navbar-nav">
+                    @*<li class="nav-item">
+                        <a href="/Home/Index" class="nav-link">首頁</a>
+                    </li>*@
+                    @*<li class="nav-item">
+                        <a href="/Home/About" class="nav-link">關於</a>
+                    </li>*@
+                    @*<li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">WORKS</a>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">GRAPHIC DESIGN</a>
+                            <a href="#" class="dropdown-item">WEB DESIGN</a>
+                            <a href="#" class="dropdown-item">3D MODEL</a>
+                        </div>
+                    </li>*@
+                    <li class="nav-item">
+                        <a href="@Url.Action("Filter","Home")" class="nav-link">活動搜尋</a>
+                    </li>
+                </ul>
+
+
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a herf='#' class="nav-link">@Session["Welcome"] </a>
+                    </li>
+                    @*<li class="nav-item">
+                        <a href="@Url.Action("Index","Home")" class="nav-link">回首頁</a>
+                    </li>*@
+                    <li class="nav-item">
+                        <a href="@Url.Action("OrderList","Order")" class="nav-link">訂單</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("ShoppingCar","Cart")" class="nav-link">收藏</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Activity","Events")" class="nav-link">主辦活動</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Logout","Account")" class="nav-link">登出</a>
+                    </li>
+                </ul>
+                @*<form class="form-inline primary my-2 my-lg-0">
+                    <a href="@Url.Action("DeleteCar")?fId=@item.fId" class="btn btn-danger">Filter</a>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>*@
+
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container body-content">
+        @RenderBody()
+        @*<hr />*@
+    </div>
+
+
+    <footer>
+        <div class="container mt-5">
+            <div class="row py-5">
+                <div class="col-lg-2 my-2">
+                    <p class="my-3">參與活動</p>
+                    <div class="toggle">
+                        <a href="#" class="d-block">
+                            <small>活動前言</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>與活動主聯絡</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>企劃書範本</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>詳細資料提供</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>場地租借</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>器具租借</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>建議</small>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 my-2">
+                    <p class="my-3">了解近況</p>
+                    <div class="toggle">
+                        <a href="#" class="d-block">
+                            <small>公司簡介</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>客服專區</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>問題解決</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>加入我們</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>新聞報導</small>
+                        </a>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>配合廠商</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>禮品卡</small>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 my-2">
+                    <p class="my-3">合作專區</p>
+                    <div class="toggle">
+                        <a href="#" class="d-block">
+                            <small>合作方案</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>贊助方案</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>限時活動</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>特約廠商</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>置入合作</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>媒體特刊</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>廣告</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>ipod touch</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>配合廠商</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>禮品卡</small>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 my-2">
+                    <p class="my-3">精選活動</p>
+                    <div class="toggle">
+                        <a href="#" class="d-block">
+                            <small>精采剪輯</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>媒體</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>使用條款</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>客戶專區</small>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 my-2">
+                    <p class="my-3">關於我們</p>
+                    <div class="toggle">
+                        <a href="#" class="d-block">
+                            <small>公司簡介</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>客服專區</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>問題解決</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>加入我們</small>
+                        </a>
+                        <a href="#" class="d-block">
+                            <small>新聞報導</small>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        @*<div class="full-width" id="sns">
+            <div class="fixed-width clearfix">
+                <div class="col-10">
+                    &copy; @DateTime.Now.Year - 購物車車車
+                </div>
+
+            </div>
+        </div>*@
+
+    </footer>
+
+
+</body>
+</html>

@@ -1,0 +1,431 @@
+﻿@model IEnumerable<Actmis.Models.tEvents>
+
+@{
+    ViewBag.Title = "Filter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section styles{
+    <style>
+        /** {
+            box-sizing: border-box;
+        }*/
+
+        /*body {
+            font-family: sans-serif;
+        }*/
+
+        /* ---- button ---- */
+        .button {
+            display: inline-block;
+            padding: 0.5em 1em;
+            background: #EEE;
+            border: none;
+            border-radius: 7px;
+            /* background-image: linear-gradient( to bottom, hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, 0.2)); */
+            color: #222;
+            font-family: sans-serif;
+            font-size: 16px;
+            /* text-shadow: 0 1px white; */
+            cursor: pointer;
+            margin-top: 4px;
+            margin-bottom: 4px;
+        }
+
+            .button:hover {
+                background-color: #9aecea;
+                /* text-shadow: 0 1px hsla(0, 0%, 100%, 0.5); */
+                color: #222;
+            }
+
+            .button:active,
+            .button.is-checked {
+                background-color: #3acbc8;
+            }
+
+            .button.is-checked {
+                color: white;
+                /* text-shadow: 0 -1px hsla(0, 0%, 0%, 0.8); */
+                border: 0;
+            }
+
+            .button:active {
+                box-shadow: inset 0 1px 10px hsla(0, 0%, 0%, 0.8);
+            }
+
+        /* ---- button-group ---- */
+        .button-group:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .button-group {
+            width:100%;
+        }
+
+        .button-group .button {
+            /* float: left; */
+            border-radius: 0;
+            margin-left: 0;
+            margin-right: 4px;
+        }
+
+        .button-group .button {
+            border-radius: 0.2em 0.2em 0.2em 0.2em;
+        }
+
+        /* .button-group .button:first-child {
+            border-radius: 0.5em 0 0 0.5em;
+        } */
+
+        /* .button-group .button:last-child {
+            border-radius: 0 0.5em 0.5em 0;
+        } */
+
+
+        /* ---- isotope ---- */
+        .grid {
+            /*background: #EEE;*/
+            /*max-width: 1200px;*/
+        }
+
+            /* clear fix */
+
+            .grid:after {
+                content: '';
+                display: block;
+                clear: both;
+            }
+
+
+        /* ui group */
+        .ui-group {
+            display: inline-block;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+            .ui-group h3 {
+                display: inline-block;
+                margin-right: 0.5em;
+                font-size: 16px;
+                /* vertical-align:middle; */
+                width: 50px;
+            }
+
+            .ui-group .button-group {
+                display: inline-block;
+                margin-right: 20px;
+            }
+
+        .filters {
+            margin-bottom: 30px;
+        }
+
+        /* color-shape */
+
+        /*.color-shape {
+            width: 70px;
+            height: 70px;
+            margin: 5px;
+            float: left;
+        }
+
+            .color-shape.round {
+                border-radius: 35px;
+            }
+
+            .color-shape.big.round {
+                border-radius: 75px;
+            }
+
+            .color-shape.red {
+                background: red;
+            }
+
+            .color-shape.blue {
+                background: blue;
+            }
+
+            .color-shape.yellow {
+                background: yellow;
+            }
+
+            .color-shape.wide,
+            .color-shape.big {
+                width: 150px;
+            }
+
+            .color-shape.tall,
+            .color-shape.big {
+                height: 150px;
+            }*/
+
+        .card-title {
+            /*height: 50px;*/
+            font-size: 18px;
+            /*display: block;*/ /*如果不是區塊元素的話，要加這一行*/
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2; /*N 填入要顯示的行數*/
+            line-height: 25px; /*填入行高 px 值*/
+            height: 50px; /*限定高度為 X * N 的 px 值*/
+        }
+
+        .card-text {
+            /*height: 80px;*/
+            font-size: 15px;
+            /*display: block;*/ /*如果不是區塊元素的話，要加這一行*/
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3; /*N 填入要顯示的行數*/
+            line-height: 20px; /*填入行高 px 值*/
+            height: 60px; /*限定高度為 X * N 的 px 值*/
+        }
+
+
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+
+        .card {
+            position: relative;
+            float: left;
+            width: 320px;
+            height: 380px;
+            margin: 12px;
+            padding: 0px;
+            border: 1px solid #EEE;
+            border-radius: 5px;
+            /*background: #888;*/
+            /*color: #262524;*/
+        }
+
+            .card > * {
+                margin: 0;
+                padding: 0;
+            }
+
+            .card .card-body {
+                margin: 20px;
+            }
+    </style>
+}
+
+@section scripts{
+
+}
+
+<div class="container">
+    @*<h1>活動篩選搜尋</h1>*@
+    <div class="filters">
+        <div class="ui-group">
+            <h3>地區</h3>
+            <div class="button-group js-radio-button-group" data-filter-group="size">
+                <button class="button is-checked" data-filter="">全部</button>
+                <button class="button" data-filter=".基隆">基隆</button>
+                <button class="button" data-filter=".台北">台北</button>
+                <button class="button" data-filter=".新北">新北</button>
+                <button class="button" data-filter=".桃園">桃園</button>
+                <button class="button" data-filter=".新竹">新竹</button>
+                <button class="button" data-filter=".苗栗">苗栗</button>
+                <button class="button" data-filter=".台中">台中</button>
+                <button class="button" data-filter=".南投">南投</button>
+                <button class="button" data-filter=".彰化">彰化</button>
+                <button class="button" data-filter=".雲林">雲林</button>
+                <button class="button" data-filter=".嘉義">嘉義</button>
+                <button class="button" data-filter=".高雄">高雄</button>
+                <button class="button" data-filter=".屏東">屏東</button>
+                <button class="button" data-filter=".宜蘭">宜蘭</button>
+                <button class="button" data-filter=".花蓮">花蓮</button>
+                <button class="button" data-filter=".台東">台東</button>
+            </div>
+        </div>
+
+        <br>
+        <div class="ui-group">
+            <h3>類別</h3>
+            <div class="button-group js-radio-button-group" data-filter-group="color">
+                <button class="button is-checked" data-filter="">全部</button>
+                <button class="button" data-filter=".A">精選</button>
+                <button class="button" data-filter=".B">藝文</button>
+                <button class="button" data-filter=".C">美食</button>
+                <button class="button" data-filter=".D">運動</button>
+                <button class="button" data-filter=".E">旅遊</button>
+                <button class="button" data-filter=".F">科技</button>
+                <button class="button" data-filter=".G">娛樂</button>
+                <button class="button" data-filter=".H">學習</button>
+                <button class="button" data-filter=".I">商業</button>
+                <button class="button" data-filter=".J">健康</button>
+                <button class="button" data-filter=".K">其它</button>
+            </div>
+        </div>
+        <br>
+        <div class="ui-group">
+            <h3>票價</h3>
+            <div class="button-group js-radio-button-group" data-filter-group="shape">
+                <button class="button is-checked" data-filter="">全部</button>
+                <button class="button" data-filter=".免費">免費</button>
+                <button class="button" data-filter=".付費">付費</button>
+            </div>
+        </div>
+        <br>
+        <div class="ui-group">
+            <h3>性質</h3>
+            <div class="button-group js-radio-button-group" data-filter-group="shape">
+                <button class="button is-checked" data-filter="">全部</button>
+                <button class="button" data-filter=".課程">課程</button>
+                <button class="button" data-filter=".講座">講座</button>
+                <button class="button" data-filter=".活動">活動</button>
+            </div>
+        </div>
+        <br>
+        <div class="ui-group">
+            <h3>屬性</h3>
+            <div class="button-group js-radio-button-group" data-filter-group="shape">
+                <button class="button is-checked" data-filter="">全部</button>
+                <button class="button" data-filter=".線上">線上</button>
+                <button class="button" data-filter=".線下">線下</button>
+                <button class="button" data-filter=".線上+線下">線上與線下</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="grid">
+        @foreach (var item in Model)
+        {
+            <div class="card @item.fArea @item.fType_no @item.fType_ca1 @item.fType_ca2 @item.fType_ca3">
+                <a href="@Url.Action("Details", "Events", new { id = item.fId })">
+                    <img src="~/images/@item.fImg" alt="" class="card-img-top">
+                </a>
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <a href="@Url.Action("Details", "Events", new { id = item.fId })">
+                            @Html.DisplayFor(modelItem => item.fName)
+                        </a>
+                    </h3>
+                    <p class="card-text">
+                        @Html.DisplayFor(modelItem => item.fDescription)
+                    </p>
+                    @if (Session["Member"] == null)
+                    {
+                        <p></p>
+                    }
+                    else
+                    {
+                        <p><a href="@Url.Action("BddCar", "Cart")?fPId=@item.fPId" class="btn btn-light">加入收藏</a></p>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+
+@*<div class="grid">
+
+        @foreach (var item in Model)
+        {
+            <div class="element-item @item.fType_no @item.fArea">
+                <img src="~/images/@item.fImg" alt="" class="card-img-top">
+                <div class="card-body">
+                    <h3 class="card-title">@Html.DisplayFor(modelItem => item.fName)</h3>
+                    <p class="card-text">
+                        @Html.DisplayFor(modelItem => item.fDescription)
+                    </p>
+                </div>
+            </div>
+        }
+    </div>*@
+
+
+@*<div class="grid">
+        <div class="color-shape small round red"></div>
+        <div class="color-shape small round blue"></div>
+        <div class="color-shape small round yellow"></div>
+        <div class="color-shape small square red"></div>
+        <div class="color-shape small square blue"></div>
+        <div class="color-shape small square yellow"></div>
+        <div class="color-shape wide round red"></div>
+        <div class="color-shape wide round blue"></div>
+        <div class="color-shape wide round yellow"></div>
+        <div class="color-shape wide square red"></div>
+        <div class="color-shape wide square blue"></div>
+        <div class="color-shape wide square yellow"></div>
+        <div class="color-shape big round red"></div>
+        <div class="color-shape big round blue"></div>
+        <div class="color-shape big round yellow"></div>
+        <div class="color-shape big square red"></div>
+        <div class="color-shape big square blue"></div>
+        <div class="color-shape big square yellow"></div>
+        <div class="color-shape tall round red"></div>
+        <div class="color-shape tall round blue"></div>
+        <div class="color-shape tall round yellow"></div>
+        <div class="color-shape tall square red"></div>
+        <div class="color-shape tall square blue"></div>
+        <div class="color-shape tall square yellow"></div>
+    </div>*@
+
+
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> -->
+<!-- <script src="https://npmcdn.com/isotope-layout@3/dist/isotope.pkgd.js"></script> -->
+<!-- <script src="isotope.pkgd.js"></script> -->
+
+<script>
+    // external js: isotope.pkgd.js
+
+    // init Isotope
+    var $grid = $('.grid').isotope({
+        itemSelector: '.card',
+        //layoutMode: 'fitRows'
+    });
+
+    // store filter for each group
+    var filters = {};
+
+    $('.filters').on('click', '.button', function (event) {
+        var $button = $(event.currentTarget);
+        // get group key
+        var $buttonGroup = $button.parents('.button-group');
+        var filterGroup = $buttonGroup.attr('data-filter-group');
+        // set filter for group
+        filters[filterGroup] = $button.attr('data-filter');
+        // combine filters
+        var filterValue = concatValues(filters);
+        // set filter for Isotope
+        $grid.isotope({ filter: filterValue });
+    });
+
+    // change is-checked class on buttons
+    $('.button-group').each(function (i, buttonGroup) {
+        var $buttonGroup = $(buttonGroup);
+        $buttonGroup.on('click', 'button', function (event) {
+            $buttonGroup.find('.is-checked').removeClass('is-checked');
+            var $button = $(event.currentTarget);
+            $button.addClass('is-checked');
+        });
+    });
+
+    // flatten object by concatting values
+    function concatValues(obj) {
+        var value = '';
+        for (var prop in obj) {
+            value += obj[prop];
+        }
+        return value;
+    }
+
+</script>
+
+
+
